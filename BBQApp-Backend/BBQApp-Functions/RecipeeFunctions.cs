@@ -4,23 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Backend_DB;
+
 using Backend_Types;
 
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Cosmos;
-using BackendTypes; // Add this using directive to resolve the CosmosClient type
-public static class RecipeeFunctions
+using BackendTypes;
+using BackendDB; // Add this using directive to resolve the CosmosClient type
+public  class RecipeeFunctions(RecipeeDBService dbService)
 {
-    private static readonly RecipeeDBService dbService = new RecipeeDBService(
-        new CosmosClient("<your-cosmos-db-connection-string>"), 
-
-        "RecipeeDatabase", 
-        "RecipeeContainer");
+  
 
     [Function("CreateRecipee")]
-    public static async Task<IActionResult> CreateRecipee(
-        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "recipee")] HttpRequest req,
+    public  async Task<IActionResult> CreateRecipee(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "api/recipee")] HttpRequest req,
         ILogger log)
     {
         log.LogInformation("C# HTTP trigger function processed a request to create a recipee.");
@@ -34,8 +31,8 @@ public static class RecipeeFunctions
     }
 
     [Function("GetRecipee")]
-    public static async Task<IActionResult> GetRecipee(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "recipee/{id}")] HttpRequest req,
+    public  async Task<IActionResult> GetRecipee(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "api/recipee/{id}")] HttpRequest req,
         string id,
         ILogger log)
     {
@@ -52,8 +49,8 @@ public static class RecipeeFunctions
     }
 
     [Function("GetRecipeesByIngredient")]
-    public static async Task<IActionResult> GetRecipeesByIngredient(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "recipee/ingredient/{ingredientName}")] HttpRequest req,
+    public  async Task<IActionResult> GetRecipeesByIngredient(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "api/recipee/ingredient/{ingredientName}")] HttpRequest req,
         string ingredientName,
         ILogger log)
     {
@@ -65,8 +62,8 @@ public static class RecipeeFunctions
     }
 
     [Function("UpdateRecipee")]
-    public static async Task<IActionResult> UpdateRecipee(
-        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "recipee/{id}")] HttpRequest req,
+    public  async Task<IActionResult> UpdateRecipee(
+        [HttpTrigger(AuthorizationLevel.Function, "put", Route = "api/recipee/{id}")] HttpRequest req,
         string id,
         ILogger log)
     {
@@ -81,8 +78,8 @@ public static class RecipeeFunctions
     }
 
     [Function("DeleteRecipee")]
-    public static async Task<IActionResult> DeleteRecipee(
-        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "recipee/{id}")] HttpRequest req,
+    public  async Task<IActionResult> DeleteRecipee(
+        [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "api/recipee/{id}")] HttpRequest req,
         string id,
         ILogger log)
     {

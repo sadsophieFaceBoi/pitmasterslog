@@ -5,7 +5,7 @@ namespace BackendTypes
 {
     public class Recipee
     {
-        public string Id { get; set; }
+        public string id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public double CookTime { get; set; } // in minutes, will be conberted by UI
@@ -22,7 +22,7 @@ namespace BackendTypes
     }
     public class Ingredient
     {
-        public string Id { get; set; } = string.Empty;
+        public string id { get; set; } = string.Empty;
         public string Name { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -65,7 +65,7 @@ namespace BackendTypes
     }
     public class Equipment
     {
-        public string Id { get; set; } = string.Empty;
+        public string id { get; set; } = string.Empty;
         public string Name { get; set; }
         public string Manufacturer { get; set; } = string.Empty;
         public string Description { get; set; }
@@ -76,17 +76,17 @@ namespace BackendTypes
     }
     public class BBQEquipmentType
     {
-        public string Id { get; set; } = string.Empty;
+        public string id { get; set; } = string.Empty;
         public string Name { get; set; }
     
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public List<string> ImageUrls { get; set; } = new List<string>();
-        public List<CookType> CookTypes { get; set; }= new List<CookType>();
+        public List<string> CookTypes { get; set; }= new List<string>();
     }
     public class CookingEquipment
     {
-        public string Id { get; set; } = string.Empty;
+        public string id { get; set; } = string.Empty;
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public string Description { get; set; }

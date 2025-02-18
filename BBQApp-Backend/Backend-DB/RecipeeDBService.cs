@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using BackendTypes;
 
-namespace Backend_DB
+namespace BackendDB
 {
     public class RecipeeDBService
     {
@@ -12,9 +12,10 @@ namespace Backend_DB
 
         public RecipeeDBService(
             CosmosClient dbClient,
-            string databaseName,
-            string containerName)
+            string databaseName
+            )
         {
+            var containerName = "RecipeeContainer";
             _container = dbClient.GetContainer(databaseName, containerName);
         }
 
